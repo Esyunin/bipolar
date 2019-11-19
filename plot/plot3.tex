@@ -1,0 +1,49 @@
+\documentclass[border=2pt,12pt]{standalone}
+\usepackage{pgfplotstable}
+\pgfplotsset{compat=1.15}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage[russian,english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{amssymb,
+	amsfonts,
+	amsmath,
+	amsthm}
+\usepackage[T2A]{fontenc}
+\pgfplotsset{width=15cm,height=10cm,compat=newest}
+
+\begin{document}
+\begin{tikzpicture}[
+]
+	\begin{axis}[
+	table/col sep = comma,
+	xlabel={$U_\text{к}$, В},
+	ylabel={$I_\text{к}$, мА},
+%	xmin=-1,
+%	xmax=0.5,
+	grid=both,
+	grid style={line width=.3pt, draw=gray!40},
+	major grid style={line width=.2pt,draw=black!40},
+	legend pos=north west,
+]
+
+
+
+	\pgfplotstableread{task3.1.csv}\exp;
+	\addplot[blue, mark=*,mark size=1.5pt,smooth] table [x expr = \thisrowno{0},y expr = \thisrowno{1}] {\exp};
+	
+	\pgfplotstableread{task3.2.csv}\exp;
+	\addplot[red, mark=*,mark size=1.5pt,smooth] table [x expr = \thisrowno{0},y expr = \thisrowno{1}] {\exp};
+	
+	\pgfplotstableread{task3.3.csv}\exp;
+	\addplot[orange, mark=*,mark size=1.5pt,smooth] table [x expr = \thisrowno{0},y expr = \thisrowno{1}] {\exp};
+	
+	\pgfplotstableread{task3.4.csv}\exp;
+	\addplot[brown, mark=*,mark size=1.5pt,smooth] table [x expr = \thisrowno{0},y expr = \thisrowno{1}] {\exp};
+
+	\legend{$I_\text{б}=20\text{ мкА}$,$I_\text{б}=40\text{ мкА}$,$I_\text{б}=60\text{ мкА}$,$I_\text{б}=80\text{ мкА}$}
+\end{axis}
+
+\end{tikzpicture}
+\end{document}
